@@ -98,7 +98,12 @@ public class HomeController {
     }
     @GetMapping("/home")
     public String home() {
-        return "home"; // create home.html
+        return "home";
+    }
+
+    @GetMapping("/requirements")
+    public String requirements() {
+        return "requirements";
     }
 
 }
