@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chatbot - A.L.I.E.N</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot - A.L.I.E.N</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <style>
+    <style>
         /* --- Base and Navigation Styles from your Homepage --- */
         * {
             margin: 0;
@@ -211,26 +211,26 @@
 <body>
 <!-- Top Navigation Bar -->
 <nav class="top-nav">
-  <div class="hamburger" id="hamburger">
-    <span></span><span></span><span></span>
-  </div>
-  <div class="embassy-nav-btn" title="Embassy Resources">🏛️</div>
+    <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+    </div>
+    <div class="embassy-nav-btn" title="Embassy Resources">🏛️</div>
 </nav>
 
 <!-- Left Sidebar -->
 <div class="sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <h2>Navigation</h2>
-    <p>Explore all features</p>
-  </div>
-  <div class="sidebar-menu">
-    <a class="menu-item"><span class="icon">🏠</span><span class="text">Home</span></a>
-    <a class="menu-item"><span class="icon">✓</span><span class="text">Requirements Checklist</span></a>
-    <a class="menu-item"><span class="icon">👥</span><span class="text">Community Hub</span></a>
-    <a class="menu-item"><span class="icon">⭐</span><span class="text">Success Stories</span></a>
-    <div class="menu-divider"></div>
-    <a class="menu-item"><span class="icon">👤</span><span class="text">My Profile</span></a>
-  </div>
+    <div class="sidebar-header">
+        <h2>Navigation</h2>
+        <p>Explore all features</p>
+    </div>
+    <div class="sidebar-menu">
+        <a class="menu-item"><span class="icon">🏠</span><span class="text">Home</span></a>
+        <a class="menu-item"><span class="icon">✓</span><span class="text">Requirements Checklist</span></a>
+        <a class="menu-item"><span class="icon">👥</span><span class="text">Community Hub</span></a>
+        <a class="menu-item"><span class="icon">⭐</span><span class="text">Success Stories</span></a>
+        <div class="menu-divider"></div>
+        <a class="menu-item"><span class="icon">👤</span><span class="text">My Profile</span></a>
+    </div>
 </div>
 
 <!-- Overlay -->
@@ -238,24 +238,24 @@
 
 <!-- Main Content where the chatbot lives -->
 <main class="main-content">
-  <div id="chat-container">
-    <header class="chat-header">
-      <h1>A.L.I.E.N Assistant</h1>
-    </header>
-    <div id="chat-messages">
-      <div class="message bot-message">
-        <div class="message-content">
-          <p class="main-reply">Hello! I am the A.L.I.E.N assistant. How can I help you with your visa questions today?</p>
+    <div id="chat-container">
+        <header class="chat-header">
+            <h1>A.L.I.E.N Assistant</h1>
+        </header>
+        <div id="chat-messages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    <p class="main-reply">Hello! I am the A.L.I.E.N assistant. How can I help you with your visa questions today?</p>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask about F-1, O-1, etc...">
+            <button id="send-btn" aria-label="Send Message">
+                <svg xmlns="http://www.w.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+        </div>
     </div>
-    <div class="chat-input-area">
-      <input type="text" id="chat-input" placeholder="Ask about F-1, O-1, etc...">
-      <button id="send-btn" aria-label="Send Message">
-        <svg xmlns="http://www.w.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-      </button>
-    </div>
-  </div>
 </main>
 
 <script>

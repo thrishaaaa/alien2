@@ -106,4 +106,37 @@ public class HomeController {
         return "requirements";
     }
 
+    @GetMapping("/chatbot")
+    public String chatbotPage() {
+        return "chatbot";  // Maps to chatbot.html
+    }
+
+    @GetMapping("/embassy")
+    public String embassyPage() {
+        // Return the name of the HTML template you want to serve for embassy resources
+        return "embassy";
+    }
+
+    @GetMapping("/uk")
+    public String ukPage() {
+        // Return the name of the HTML template you want to serve for embassy resources
+        return "uk";
+    }
+    @GetMapping("/australia")
+    public String australiaPage() {
+        // Return the name of the HTML template you want to serve for embassy resources
+        return "australia";
+    }
+    @GetMapping("/canada")
+    public String canadaPage() {
+        // Return the name of the HTML template you want to serve for embassy resources
+        return "canada";
+    }
+
+    @GetMapping("/germany")
+    public String germanyPage() {
+        // Return the name of the HTML template you want to serve for embassy resources
+        return "germany";
+    }
+
 }
