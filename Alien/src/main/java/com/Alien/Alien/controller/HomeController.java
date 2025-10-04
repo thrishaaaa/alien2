@@ -2,6 +2,7 @@ package com.Alien.Alien.controller;
 
 import com.Alien.Alien.model.User;
 import com.Alien.Alien.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,11 +62,43 @@ public class HomeController {
         User user = new User();
         user.setUsername(username);
         user.setEmail(email);
-        user.setPasswordHash(password); // simple password, no encryption
+        user.setPasswordHash(password);
         user.setRole(role);
 
         userService.registerUser(user);
 
+        return "redirect:/home";
+    }
+    @PostMapping("/login")
+    public String loginUser(@RequestParam("email") String email,
+                            @RequestParam("password") String password,
+                            Model model,
+                            HttpSession session) {
+
+        User user = userService.findByEmail(email);
+
+        if (user == null || user.getPasswordHash() == null) {
+            model.addAttribute("error", "Invalid email or password!");
+            return "login";
+        }
+
+        if (!password.equals(user.getPasswordHash())) {
+            model.addAttribute("error", "Invalid email or password!");
+            return "login";
+        }
+
+        session.setAttribute("loggedInUser", user);
+        return "redirect:/home";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
         return "redirect:/login";
     }
+    @GetMapping("/home")
+    public String home() {
+        return "home"; // create home.html
+    }
+
 }

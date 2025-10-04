@@ -34,7 +34,7 @@
             pointer-events: none;
             user-select: none;
             animation: float 20s infinite ease-in-out;
-            z-index: 0; /* 👈 Added to keep watermarks behind everything */
+            z-index: 0;
         }
 
         .alien-watermark:nth-child(1) {
@@ -72,7 +72,7 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
-            z-index: 10; /* 👈 Added to ensure it's above watermarks */
+            z-index: 10;
         }
 
         .register-card::before {
@@ -366,7 +366,7 @@
             font-size: 14px;
             margin-top: 25px;
             position: relative;
-            z-index: 10; /* 👈 Added */
+            z-index: 10;
         }
 
         .login-link a {
@@ -385,7 +385,7 @@
             text-align: center;
             margin-top: 20px;
             position: relative;
-            z-index: 10; /* 👈 Added */
+            z-index: 10;
         }
 
         .back-home a {
