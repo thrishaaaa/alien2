@@ -106,6 +106,11 @@ public class HomeController {
         return "requirements";
     }
 
+    @GetMapping("/eligibility")
+    public String eligibility() {
+        return "eligibility";
+    }
+
     @GetMapping("/chatbot")
     public String chatbotPage() {
         return "chatbot";  // Maps to chatbot.html
@@ -137,6 +142,34 @@ public class HomeController {
     public String germanyPage() {
         // Return the name of the HTML template you want to serve for embassy resources
         return "germany";
+    }
+
+    @GetMapping("/community")
+    public String communityPage() {
+
+        return "community_homepage";
+    }
+
+    @GetMapping("/live_chat")
+    public String live_chatPage() {
+
+        return "live_chat";
+    }
+    @GetMapping("/company")
+    public String showCompanyLanding() {
+        return "company";
+    }
+
+    // Employee/User portal - Shows courses, internships, jobs
+    @GetMapping("/explore")
+    public String showExplorePage() {
+        return "explore";
+    }
+
+    // Job Provider portal - Post jobs, internships, courses
+    @GetMapping("/jobportol")
+    public String showJobPortalPage() {
+        return "jobportol";
     }
 
 }

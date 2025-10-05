@@ -813,6 +813,41 @@
             .category-content-inner {
                 padding: 20px;
             }
+            /* Container to center the button and add some space */
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* Base styles for all buttons */
+.btn {
+    padding: 15px 35px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+/* Primary button style using your accent color */
+.btn-primary {
+    background: #5a67d8; /* Main accent color */
+    color: white;
+    box-shadow: 0 4px 15px rgba(90, 103, 216, 0.2);
+}
+
+.btn-primary:hover {
+    background: #4c59c4; /* A slightly darker shade for hover */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(90, 103, 216, 0.3);
+}
         }
     </style>
 </head>
@@ -1542,6 +1577,14 @@
               <span class="option-points">0 pts</span>
             </div>
           </div>
+        </div>
+        <div class="btn-container">
+
+          <!-- The link to your eligibility page, styled as a primary button -->
+          <a th:href="@{/eligibility}" href="/eligibility" class="btn btn-primary">
+            Upload Documents Here
+          </a>
+
         </div>
       </div>
 

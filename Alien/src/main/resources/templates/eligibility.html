@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O-1 Eligibility Checklist - A.L.I.E.N</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+        :root {
+            --background-color: #f8f7f5;
+            --card-background: #ffffff;
+            --text-primary: #2c3e50;
+            --text-secondary: #6c757d;
+            --accent-primary: #5a67d8;
+            --accent-secondary: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            --border-color: #f0f0f0;
+            --success-color: #28a745;
+            --error-color: #e53e3e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background-color);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* --- START: Navigation & Sidebar CSS (From your reference) --- */
+        .top-nav { background: #f8f7f5; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; left: 0; width: 100%; z-index: 100; border-bottom: 1px solid var(--border-color); }
+        .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; }
+        .hamburger span { width: 28px; height: 3px; background: #2c3e50; border-radius: 3px; transition: all 0.3s ease; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        .embassy-nav-btn { width: 45px; height: 45px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); cursor: pointer; transition: all 0.3s ease; }
+        .embassy-nav-btn:hover { transform: scale(1.1); }
+        .sidebar { position: fixed; top: 0; left: -25%; width: 25%; min-width: 280px; height: 100vh; background: #ffffff; box-shadow: 5px 0 20px rgba(0,0,0,0.1); transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000; overflow-y: auto; }
+        .sidebar.active { left: 0; }
+        .sidebar-header { padding: 25px; background: var(--accent-gradient); color: white; }
+        .sidebar-header h2 { font-size: 20px; letter-spacing: 2px; }
+        .sidebar-header p { font-size: 14px; opacity: 0.9; }
+        .sidebar-menu { padding: 20px 0; }
+        .menu-item { padding: 15px 25px; color: #2c3e50; text-decoration: none; display: flex; align-items: center; gap: 15px; transition: all 0.3s ease; border-left: 3px solid transparent; cursor: pointer; }
+        .menu-item:hover, .menu-item.active { background: #f8f9fa; border-left-color: var(--accent-primary); }
+        .menu-item .icon { font-size: 20px; width: 30px; }
+        .menu-item .text { font-size: 15px; font-weight: 500; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 999; }
+        .overlay.active { opacity: 1; visibility: visible; }
+        /* --- END: Navigation CSS --- */
+
+        /* --- Main Content Layout --- */
+        .main-content { padding: 20px; padding-top: 95px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 40px; }
+        header h1 { font-size: 36px; font-weight: 700; }
+        header p { font-size: 16px; color: var(--text-secondary); }
+
+        .checklist-container { display: grid; gap: 25px; }
+        .criteria-card { background: var(--card-background); border-radius: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); padding: 25px 30px; transition: opacity 0.4s ease; }
+        .criteria-header { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
+        .criteria-number { font-size: 20px; font-weight: 700; color: var(--accent-primary); background: #eef0ff; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .criteria-title { font-size: 20px; font-weight: 600; padding-top: 5px; }
+
+        .file-upload-area { position: relative; padding-bottom: 30px; }
+        .file-drop-zone { border: 2px dashed #d0d0d0; border-radius: 12px; padding: 30px; text-align: center; cursor: pointer; transition: all 0.3s ease; }
+        .file-drop-zone:hover, .file-drop-zone.dragover { border-color: var(--accent-primary); background: #f8f9fa; }
+        .file-drop-zone p { font-size: 16px; color: var(--text-secondary); }
+        .file-drop-zone .upload-icon { font-size: 32px; color: var(--accent-primary); margin-bottom: 10px; }
+        .file-drop-zone .browse-link { color: var(--accent-primary); font-weight: 600; }
+        .file-preview { display: none; border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; align-items: center; justify-content: space-between; background: #f8f9fa; }
+        .file-info { display: flex; align-items: center; gap: 15px; overflow: hidden; }
+        .file-thumbnail { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; flex-shrink: 0;}
+        .file-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .file-size { font-size: 13px; color: var(--text-secondary); }
+        .remove-file-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--error-color); }
+        .error-message { color: var(--error-color); font-size: 14px; margin-top: 10px; text-align: center; }
+
+        .skip-btn { position: absolute; bottom: 0; right: 0; background: none; border: none; color: var(--text-secondary); font-size: 14px; font-weight: 500; cursor: pointer; padding: 5px; }
+        .skip-btn:hover { text-decoration: underline; color: var(--accent-primary); }
+        .skipped-overlay { display: none; align-items: center; justify-content: center; padding: 50px 20px; border: 2px dashed #d0d0d0; border-radius: 12px; text-align: center; background: #fafafa; }
+        .skipped-overlay p { font-size: 18px; font-weight: 600; color: var(--text-secondary); }
+        .undo-skip-btn { background: none; border: none; color: var(--accent-primary); font-size: 16px; font-weight: 600; cursor: pointer; margin-left: 10px; text-decoration: underline; }
+        .criteria-card.skipped { opacity: 0.6; }
+        .criteria-card.skipped .file-upload-area { display: none; }
+        .criteria-card.skipped .skipped-overlay { display: flex; }
+
+        .save-section { text-align: center; margin: 40px 0; }
+        .btn-save { background: var(--accent-gradient); color: white; border: none; padding: 18px 40px; border-radius: 50px; font-size: 18px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(90, 103, 216, 0.3); }
+        .btn-save:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(90, 103, 216, 0.4); }
+
+        #success-message-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease; }
+        #success-message-overlay.active { opacity: 1; visibility: visible; }
+        .success-message-box { background: var(--card-background); padding: 40px 50px; border-radius: 16px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.2); transform: scale(0.9); transition: transform 0.3s ease; }
+        #success-message-overlay.active .success-message-box { transform: scale(1); }
+        .success-message-box .icon { font-size: 48px; margin-bottom: 20px; }
+        .success-message-box p { font-size: 18px; font-weight: 500; color: var(--text-secondary); }
+
+        #final-success-content a { display: inline-block; margin-top: 20px; color: var(--accent-primary); text-decoration: none; font-weight: 600; padding: 10px 20px; border-radius: 8px; transition: background-color 0.2s; }
+        #final-success-content a:hover { background-color: #eef0ff; }
+
+        @media (max-width: 768px) { .sidebar { width: 280px; left: -280px; } .top-nav { padding: 15px 20px; } .main-content { padding-left: 15px; padding-right: 15px; } }
+    </style>
+</head>
+<body>
+<nav class="top-nav">
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  <div class="embassy-nav-btn" onclick="window.location.href='/embassy'" title="Embassy Resources">🏛️</div>
+</nav>
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header"><h2>A.L.I.E.N</h2><p>Navigation</p></div>
+  <div class="sidebar-menu">
+    <a href="/home" class="menu-item"><span class="icon">🏠</span><span class="text">Home</span></a>
+    <a href="/eligibility" class="menu-item active"><span class="icon">✓</span><span class="text">Eligibility Checklist</span></a>
+    <a href="/community" class="menu-item"><span class="icon">👥</span><span class="text">Community Hub</span></a>
+    <a href="/chatbot" class="menu-item"><span class="icon">💬</span><span class="text">AI Assistant</span></a>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<main class="main-content">
+  <div class="container">
+    <header>
+      <h1>O-1 Visa Eligibility Checklist</h1>
+      <p>Upload your supporting documents for each of the following criteria.</p>
+    </header>
+    <div class="checklist-container"></div>
+    <div class="save-section">
+      <button id="save-docs-btn" class="btn-save">Save & Submit</button>
+    </div>
+  </div>
+</main>
+<div id="success-message-overlay">
+  <div class="success-message-box">
+    <div id="initial-success-content">
+      <div class="icon">🎉</div>
+      <p>Document verification will begin soon.</p>
+    </div>
+    <div id="final-success-content" style="display: none;">
+      <div class="icon">✅</div>
+      <p>Success! Your documents have been submitted.</p>
+      <a href="#" onclick="history.back(); return false;">Go back to the previous page</a>
+    </div>
+  </div>
+</div>
+
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            if(hamburger && sidebar && overlay) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    sidebar.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                });
+                overlay.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+            }
+
+            const checklistContainer = document.querySelector('.checklist-container');
+            if (!checklistContainer) { console.error("Fatal Error: The '.checklist-container' was not found."); return; }
+
+            const criteriaList = [ "Awards and Recognition", "Professional Memberships", "Published Materials", "Judging Others' Work", "Original Contributions", "Scholarly Articles", "Critical or Essential Capacity", "High Salary or Remuneration" ];
+
+            criteriaList.forEach((title, index) => {
+                const card = document.createElement('div');
+                card.className = 'criteria-card';
+                card.innerHTML = `<div class="criteria-header"><div class="criteria-number">${index + 1}</div><h2 class="criteria-title">${title}</h2></div><div class="file-upload-area"><label for="file-input-${index}" class="file-drop-zone"><div class="upload-icon">⤴️</div><p>Drag & drop file here, or <span class="browse-link">browse</span></p><p style="font-size: 13px; margin-top: 5px;">PDF, JPG, or PNG</p><input type="file" id="file-input-${index}" accept=".pdf,.jpg,.jpeg,.png" style="display: none;"></label><div class="file-preview" style="display: none;"></div><div class="error-message"></div><button class="skip-btn">Skip for now</button></div><div class="skipped-overlay"><p>Skipped</p><button class="undo-skip-btn">Undo</button></div>`;
+                checklistContainer.appendChild(card);
+            });
+
+            // ✅ THIS IS THE FULL, RESTORED LOGIC BLOCK
+            document.querySelectorAll('.criteria-card').forEach((card, index) => {
+                const dropZone = card.querySelector('.file-drop-zone');
+                const fileInput = card.querySelector(`#file-input-${index}`);
+                const skipBtn = card.querySelector('.skip-btn');
+                const undoBtn = card.querySelector('.undo-skip-btn');
+
+                // --- Skip Logic ---
+                skipBtn.addEventListener('click', () => {
+                    card.classList.add('skipped');
+                });
+                undoBtn.addEventListener('click', () => {
+                    card.classList.remove('skipped');
+                });
+
+                // --- File Upload Logic ---
+                const handleFile = (file) => {
+                    const filePreview = card.querySelector('.file-preview');
+                    const errorMessage = card.querySelector('.error-message');
+                    errorMessage.textContent = '';
+                    const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png'];
+                    if (!allowedTypes.includes(file.type)) {
+                        errorMessage.textContent = 'Invalid file type.';
+                        return;
+                    }
+                    showPreview(file, dropZone, filePreview);
+                    uploadFile(file, card.querySelector('.criteria-title').textContent, errorMessage, filePreview);
+                };
+                fileInput.addEventListener('change', () => fileInput.files.length && handleFile(fileInput.files[0]));
+                dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+                dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+                dropZone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    dropZone.classList.remove('dragover');
+                    if (e.dataTransfer.files.length) {
+                        fileInput.files = e.dataTransfer.files;
+                        handleFile(fileInput.files[0]);
+                    }
+                });
+            });
+
+            function showPreview(file, dropZone, filePreview) {
+                dropZone.style.display = 'none';
+                filePreview.style.display = 'flex';
+                let thumbnailSrc = file.type.startsWith('image') ? URL.createObjectURL(file) : 'https://placehold.co/50x50/e8e6e1/2c3e50?text=PDF';
+                filePreview.innerHTML = `<div class="file-info"><img src="${thumbnailSrc}" class="file-thumbnail" alt="preview"><div class="file-details"><p class="file-name">${file.name}</p><p class="file-size">Uploading...</p></div></div><button class="remove-file-btn" title="Remove">&times;</button>`;
+                filePreview.querySelector('.remove-file-btn').addEventListener('click', () => {
+                    filePreview.style.display = 'none';
+                    dropZone.style.display = 'block';
+                    dropZone.parentElement.querySelector('input[type="file"]').value = '';
+                });
+            }
+
+            async function uploadFile(file, criteria, errorMessage, filePreview) {
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('criteria', criteria.replace(/\s+/g, '-'));
+                try {
+                    const response = await fetch('/api/upload', { method: 'POST', body: formData });
+                    const resultText = await response.text();
+                    if (!response.ok) throw new Error(resultText || 'Server error.');
+                    const statusEl = filePreview.querySelector('.file-size');
+                    if(statusEl) { statusEl.textContent = '✅ Uploaded!'; statusEl.style.color = 'var(--success-color)'; }
+                } catch (error) {
+                    console.error('Error:', error);
+                    errorMessage.textContent = 'Upload failed.';
+                    const statusEl = filePreview.querySelector('.file-size');
+                    if(statusEl) { statusEl.textContent = '❌ Failed!'; statusEl.style.color = 'var(--error-color)'; }
+                }
+            }
+
+            // --- Save & Redirect Logic ---
+            const saveBtn = document.getElementById('save-docs-btn');
+            const successOverlay = document.getElementById('success-message-overlay');
+            const initialContent = document.getElementById('initial-success-content');
+            const finalContent = document.getElementById('final-success-content');
+            if (saveBtn && successOverlay && initialContent && finalContent) {
+                saveBtn.addEventListener('click', () => {
+                    initialContent.style.display = 'block';
+                    finalContent.style.display = 'none';
+                    successOverlay.classList.add('active');
+                    setTimeout(() => {
+                        initialContent.style.display = 'none';
+                        finalContent.style.display = 'block';
+                    }, 2000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - Connect & Learn</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #e8e6e1;
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #5a6c7d;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #5a6c7d;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Community Card */
+        .community-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .community-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .community-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .community-description {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(92, 108, 125, 0.1);
+            border-radius: 10px;
+        }
+
+        .member-count {
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .member-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Join Button */
+        .join-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto 2rem;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            background: #5a6c7d;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(90, 108, 125, 0.3);
+        }
+
+        .join-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(90, 108, 125, 0.4);
+            background: #4a5c6d;
+        }
+
+        .join-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Preview Section */
+        .preview-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .preview-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .message-preview {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 0.8rem;
+            border-left: 3px solid #5a6c7d;
+            transition: transform 0.2s;
+        }
+
+        .message-preview:hover {
+            transform: translateX(5px);
+        }
+
+        .message-author {
+            font-weight: 600;
+            color: #5a6c7d;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        .message-text {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .message-time {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 0.3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .community-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .community-title {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="nav-container">
+        <div class="logo">💬 ConnectHub</div>
+        <ul class="nav-links">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/community" class="active">Community</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="community-card">
+        <div class="community-header">
+            <h1 class="community-title">Tech Career Community</h1>
+            <p class="community-description">
+                Connect with like-minded professionals, share experiences, ask questions about careers, college,
+                work life, and get valuable insights from people in your field. Join our live chat to engage in
+                real-time conversations with the community!
+            </p>
+        </div>
+
+        <div class="stats-container">
+            <span class="member-icon">👥</span>
+            <span class="member-count">1,245 members have joined</span>
+        </div>
+
+        <button class="join-btn" id="joinBtn" onclick="window.location.href='/live_chat'">
+            🚀 Join Community
+        </button>
+
+
+        <div class="preview-section">
+            <h3 class="preview-title">🔥 Recent Activity</h3>
+            <div id="messagePreview">
+                <div class="message-preview">
+                    <div class="message-author">SarahK</div>
+                    <div class="message-text">Anyone else applying for the new SWE role at Innovatech? I'm stuck on the system design challenge.</div>
+                    <div class="message-time">1 minute ago</div>
+                </div>
+                <div class="message-preview">
+                    <div class="message-author">Dev_Ops_Max</div>
+                    <div class="message-text">Just finished my AWS Solutions Architect certification! Feeling great. What should I tackle next?</div>
+                    <div class="message-time">4 hours ago</div>
+                </div>
+                <div class="message-preview">
+                    <div class="message-author">NewGrad2025</div>
+                    <div class="message-text">Any tips for negotiating a starting salary as a junior developer?</div>
+                    <div class="message-time">1 day ago</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
